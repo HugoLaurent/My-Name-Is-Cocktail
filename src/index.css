@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background-color: #00070C;
+    color: white;
+}
+
