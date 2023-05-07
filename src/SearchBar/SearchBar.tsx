@@ -2,21 +2,29 @@ import './style.css';
 
 import drinkOne from './../assets/images/drink-one.png';
 import drinkTwo from './../assets/images/drink-two.png';
+import { useState } from 'react';
 
 const SearchBar = ({ setSearch, fetchDrink }) => {
-  const handleSearchChange = () => {
-    const searchValue = document.querySelector('.search-bar').value;
-    setSearch(searchValue);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleSearchChange = (event) => {
+    setInputValue(event.target.value);
   };
+
+  const handleClick = () => {
+    setSearch(inputValue);
+  };
+
   return (
     <section className="flex w-1/2 flex-col gap-5">
       <input
         type="text"
         className="search-bar rounded p-2"
         placeholder="What would like to drink?"
+        onChange={handleSearchChange}
       />
       <section className="flex justify-around text-xl">
-        <button onClick={handleSearchChange}>
+        <button onClick={handleClick}>
           Drink It
           <img className="ml-1 inline-block invert" src={drinkOne} />
         </button>
