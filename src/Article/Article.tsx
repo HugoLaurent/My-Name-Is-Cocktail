@@ -1,6 +1,7 @@
 import './style.css';
+import ArticleProps from '@/inteface';
 
-const Article = ({ title, img, description, glass, drink }) => {
+const Article = ({ title, img, description, glass, drink }: ArticleProps) => {
   return (
     <article
       className=" m-4 w-full max-w-sm lg:flex lg:max-w-full"
@@ -25,11 +26,12 @@ const Article = ({ title, img, description, glass, drink }) => {
           <div>
             <p className="text-black">You will need : {glass}</p>
             <section className="flex flex-wrap gap-2 text-black">
-              {Object.entries(drink).map(([key, value]) => {
+              {Object.entries(drink!).map(([key, value]) => {
                 if (key.includes('strIngredient') && value) {
                   const ingredientIndex = key.slice(-1);
                   const measureKey = `strMeasure${ingredientIndex}`;
-                  const measure = drink[measureKey];
+                  const measure = (drink as any)[measureKey];
+
                   if (measure) {
                     return (
                       <p className="" key={key}>

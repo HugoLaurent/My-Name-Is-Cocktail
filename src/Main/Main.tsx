@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 import Article from '@/Article/Article';
 
-const Main = ({ drink }) => {
+const Main = ({ drink }: { drink: any }) => {
   return (
     <main className="">
       {drink && (
         <motion.div className="animation-div">
-          {drink.drinks.map((drink, index) => (
+          {drink.drinks.map((drink: any, index: any) => (
             <motion.div
               key={drink.idDrink}
               initial={{ opacity: 0, scale: 0.7 }}

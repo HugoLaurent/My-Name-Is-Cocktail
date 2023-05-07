@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import Header from './Header/Header';
 import Main from './Main/Main';
 import Footer from './Footer/Footer';
@@ -7,7 +7,7 @@ import SearchBar from './SearchBar/SearchBar';
 const App = () => {
   const [drink, setDrink] = useState(null);
   const [search, setSearch] = useState('');
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<null | Error>(null);
 
   useEffect(() => {
     async function fetchCocktail() {
@@ -25,7 +25,7 @@ const App = () => {
           throw new Error("We don't know how to do that cocktail sorry!");
         }
       } catch (error) {
-        setError(error);
+        setError(error as Error);
       }
     }
     if (search !== '') {
@@ -42,12 +42,12 @@ const App = () => {
       setDrink(data);
       setError(null);
     } catch (error) {
-      setError(error);
+      setError(error as Error);
     }
   }
 
   const toDisplay = () => {
-    if (error) {
+    if (error instanceof Error) {
       return <p>{error.message}</p>;
     } else if (search && drink === null) {
       return (

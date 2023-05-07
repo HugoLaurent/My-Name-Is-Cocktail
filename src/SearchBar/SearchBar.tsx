@@ -4,10 +4,16 @@ import drinkOne from './../assets/images/drink-one.png';
 import drinkTwo from './../assets/images/drink-two.png';
 import { useState } from 'react';
 
-const SearchBar = ({ setSearch, fetchDrink }) => {
+const SearchBar = ({
+  setSearch,
+  fetchDrink,
+}: {
+  setSearch: any;
+  fetchDrink: any;
+}) => {
   const [inputValue, setInputValue] = useState('');
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
