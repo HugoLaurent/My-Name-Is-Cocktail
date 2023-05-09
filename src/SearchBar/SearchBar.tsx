@@ -17,12 +17,19 @@ const SearchBar = ({
     setInputValue(event.target.value);
   };
 
-  const handleClick = () => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault(); // On bloque le refresh provoqué par la balise form
+    setSearch(inputValue);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // On bloque le refresh provoqué par la balise form
     setSearch(inputValue);
   };
 
   return (
-    <section className="flex w-1/2 flex-col gap-5">
+    <form className="flex w-1/2 flex-col gap-5" onSubmit={handleSubmit}>
+      {/* remplacement de "section" par "form" et ajout de onSubmit pour gérer la validation avec la touche "Entréeé*/}
       <input
         type="text"
         className="search-bar rounded p-2"
@@ -42,7 +49,7 @@ const SearchBar = ({
           />
         </button>
       </section>
-    </section>
+    </form>
   );
 };
 
